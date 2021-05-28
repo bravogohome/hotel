@@ -1,0 +1,14 @@
+.bookName,.ISBN,.language,.bookPrice,.detail,.bookCounts{
+    width: 250px;
+    height: 30px;
+    /*设置边框圆角*/
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.btnn{
+    width: 150px;
+    height: 40px;
+    background-color: #32A2E3;
+    color: white;
+    border: 1px solid;
+}

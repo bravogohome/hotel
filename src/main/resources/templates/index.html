@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:background="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Hotel</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href='http://fonts.useso.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+	<script src="/js/jquery.min.js"></script>
+	<!--start slider -->
+	<link rel="stylesheet" th:href="@{/css/fwslider.css}" media="all">
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/css3-mediaqueries.js"></script>
+	<script src="/js/fwslider.js"></script>
+	<!--end slider -->
+	<!---strat-date-piker---->
+	<link rel="stylesheet" href="/css/jquery-ui.css" />
+	<script src="/js/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$("#datepicker,#datepicker1").datepicker({
+				numberOfMonths: 1,
+				showButtonPanel: true,
+				changeMonth: true,
+				changeYear: true,
+				"yearRange": '2020:2050',
+				showMonthAfterYear: true,
+				dateFormat:"yy-mm-dd"
+			});
+		});
+		jQuery(function($){
+			$.datepicker.regional['zh-CN'] = {
+				clearText: '清除',
+				clearStatus: '清除已选日期',
+				closeText: '关闭',
+				closeStatus: '不改变当前选择',
+				prevText: '<上月',
+				prevStatus: '显示上月',
+				prevBigText: '<<',
+				prevBigStatus: '显示上一年',
+				nextText: '下月>',
+				nextStatus: '显示下月',
+				nextBigText: '>>',
+				nextBigStatus: '显示下一年',
+				currentText: '本月',
+				currentStatus: '显示本月',
+				monthNames: ['一月','二月','三月','四月','五月','六月', '七月','八月','九月','十月','十一月','十二月'],
+				monthNamesShort: ['1月','2月','3月','4月','5月','6月', '7月','8月','9月','10月','11月','12月'],
+				monthStatus: '选择月份',
+				yearStatus: '选择年份',
+				weekHeader: '周',
+				weekStatus: '年内周次',
+				dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+				dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+				dayNamesMin: ['日','一','二','三','四','五','六'],
+				dayStatus: '设置 DD 为一周起始',
+				dateStatus: '选择 m月 d日, DD',
+				dateFormat: 'yy-mm-dd',
+				firstDay: 1,
+				initStatus: '请选择日期',
+				isRTL: false};
+			$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+		});
+	</script>
+	<script th:inline="javascript"  type="text/javascript">
+		function btnAction(){
+			var datepick=$("#datepicker").val();
+			var datepick1=$("#datepicker1").val();
+			var date1=new Date(datepick);
+			var date2=new Date(datepick1);
+			var date=new Date();
+			if (date1!=null&&date2!=null){
+				if (date1<date2&&date1>=date){
+					return;
+				}
+			}
+			alert("请确认日期是否输入正确");
+		}
+		function submitCheck(){
+			var datepick=$("#datepicker").val();
+			var datepick1=$("#datepicker1").val();
+			var date1=new Date(datepick);
+			var date2=new Date(datepick1);
+			var date=new Date();
+			if (date1!=null&&date2!=null){
+				if (date1<date2&&date1>=date){
+					return true;
+				}
+			}
+			return false;
+		}
+	</script>
+	<!---/End-date-piker---->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/JFGrid.css}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/JFFormStyle-1.css}" />
+	<script type="text/javascript" src="@{/js/JFCore.js}"></script>
+	<script type="text/javascript" src="@{/js/JFForms.js}"></script>
+	<!-- Set here the key for your domain in order to hide the watermark on the web server -->
+	<script type="text/javascript">
+		(function() {
+			JC.init({
+				domainKey: ''
+			});
+		})();
+	</script>
+	<!--nav-->
+	<script>
+		$(function() {
+			var pull 		= $('#pull');
+			menu 		= $('nav ul');
+			menuHeight	= menu.height();
+
+			$(pull).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+
+			$(window).resize(function(){
+				var w = $(window).width();
+				if(w > 320 && menu.is(':hidden')) {
+					menu.removeAttr('style');
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+	<div class="wrap">
+		<div class="header">
+			<div class="logo">
+				<a th:href="@{'/trans/toIndex?userId='+${userId}}"><img th:src="@{/img/logo.png}" alt=""></a>
+			</div>
+			<div class="h_right">
+				<!--start menu -->
+				<ul class="menu">
+					<li class="active"><a th:href="@{'/trans/toIndex?userId='+${userId}}">hotel</a></li> |
+					<li><a th:href="@{'/trans/toRoom?userId='+${userId}}">rooms & suits</a></li> |
+					<li><a th:href="@{'/trans/toContact?userId='+${userId}}">contact</a></li>
+
+					<li  class="home">  <a th:href="@{'/userinformation/getUserInformation?userId='+${userId}}"><img th:src="@{/img/person1.jpg}" alt="" /></a></li>
+					<li class="home1"><a th:href="@{'/userinformation/getUserInformation?userId='+${userId}}"><p>个人信息</p></a></li>
+
+					<div class="clear"></div>
+				</ul>
+
+			</div>
+			<div class="clear"></div>
+
+		</div>
+	</div>
+</div>
+<!----start-images-slider---->
+<div class="images-slider">
+	<!-- start slider -->
+	<div id="fwslider">
+		<div class="slider_container">
+			<div class="slide">
+				<!-- Slide image -->
+				<img th:src="@{/img/slider-bg.jpg}" alt=""/>
+				<!-- /Slide image -->
+				<!-- Texts container -->
+				<div class="slide_content">
+					<div class="slide_content_wrap">
+						<!-- Text title -->
+						<h4 class="title"><i class="bg"></i>欢迎 <span class="hide">预定</span></h4>
+						<h5 class="title1"><i class="bg"></i>Welcome<span class="hide" >Order</span></h5>
+						<!--<h4 class="title"><i class="bg"></i>Lorem Ipsum is simply <span class="hide">dummy text</span></h4>
+						<h5 class="title1"><i class="bg"></i>Morbi justo <span class="hide" >condimentum accumsan</span></h5>-->
+						<!-- /Text title -->
+					</div>
+				</div>
+				<!-- /Texts container -->
+			</div>
+			<!-- /Duplicate to create more slides -->
+			<div class="slide">
+				<img th:src="@{/img/slider-bg.jpg}" alt=""/>
+				<div class="slide_content">
+					<div class="slide_content_wrap">
+						<!-- Text title -->
+						<!--<h4 class="title"><i class="bg"></i>Morbi justo <span class="hide"> condimentum </span>text</h4>
+						<h5 class="title1"><i class="bg"></i>Lorem Ipsum is <span class="hide">simply dummy text</span> </h5>-->
+
+						<h5 class="title1"><i class="bg"></i>酒店<span class="hide" >预约</span></h5>
+						<h4 class="title"><i class="bg"></i>就趁现在 <span class="hide">马上预定</span></h4>
+						<!-- /Text title -->
+					</div>
+				</div>
+			</div>
+			<!--/slide -->
+		</div>
+		<div class="timers"> </div>
+		<div class="slidePrev"><span > </span></div>
+		<div class="slideNext"><span> </span></div>
+	</div>
+	<!--/slider -->
+</div>
+<!--start main -->
+<div class="main_bg">
+	<div class="wrap">
+		<div class="online_reservation">
+			<!--<div class="b_room">-->
+			<form class="b_room" th:action="@{/room/findRestRoom}" name="form1" method="get" onsubmit="return submitCheck();">
+			<!--<form class="b_room" th:action="@{http://101.133.215.11:8062/room/findRestRoom}" name="form1" method="get">-->
+				<div class="booking_room">
+					<h4>在线预订房间</h4>
+					<p>本酒店可在线预定，请您选择正确的时间进行预定。</p>
+				</div>
+				<div class="reservation">
+					<ul>
+						<li class="span1_of_1">
+							<h5>房间类型:</h5>
+							<!----------start section_room----------->
+							<div class="section_room">
+								<select id="country" name="roomType" onchange="change_country(this.value)" class="frm-field required">
+									<option value="standard">单人房</option>
+									<option value="double">双人房</option>
+									<option value="perfect">套房</option>
+								</select>
+							</div>
+						</li>
+						<li  class="span1_of_1 left">
+							<h5>入住日期:</h5>
+							<div class="book_date">
+								<input class="date" id="datepicker" type="text" name="startDay"  onfocus="this.value = '';" >
+							</div>
+						</li>
+						<li  class="span1_of_1 left">
+							<h5>离店日期:</h5>
+							<div class="book_date">
+								<input class="date" id="datepicker1" type="text" name="endDay"   onfocus="this.value = '';" >
+							</div>
+						</li>
+						<li class="span1_of_3">
+							<div class="date_btn">
+								<input type="hidden" name="userId" th:value="${userId}" th:if="${not #strings.isEmpty(userId)}">
+								<input type="submit" value="book now" onclick="btnAction()"/>
+							</div>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</form>
+			<!--</div>-->
+		</div>
+
+		<!--start grids_of_3 -->
+		<div class="grids_of_3">
+			<div class="grid1_of_3">
+				<div class="grid1_of_3_img">
+					<a th:href="@{'/trans/toDetails?num=1&userId='+${userId}}">
+						<img th:src="@{/img/pic1.jpg}" alt="" />
+						<span class="next"> </span>
+					</a>
+				</div>
+				<h4><a href="#">单人房<span>388¥/天</span></a></h4>
+				<p>单人房是指房间里只有一张床，而房间里的配套设施（牙刷、牙膏、肥皂、梳子、一次性拖鞋等）都只有一套。</p>
+			</div>
+			<div class="grid1_of_3">
+				<div class="grid1_of_3_img">
+					<a th:href="@{'/trans/toDetails?num=2&userId='+${userId}}">
+						<img th:src="@{/img/pic2.jpg}" alt="" />
+						<span class="next"> </span>
+					</a>
+				</div>
+				<h4><a href="#">双人房<span>688¥/天</span></a></h4>
+				<p>可容许双人同时入住。通常有两张或更多张的单人床，两套或多套单人用洁具。</p>
+			</div>
+			<div class="grid1_of_3">
+				<div class="grid1_of_3_img">
+					<a th:href="@{'/trans/toDetails?num=3&userId='+${userId}}">
+						<img th:src="@{/img/pic3.jpg}" alt="" />
+						<span class="next"> </span>
+					</a>
+				</div>
+				<h4><a href="#">套房<span>1688¥/天</span></a></h4>
+				<p>套房面积宽敞、舒适，每套均达52平方米或以上，房间地面铺设高档地毯，室内配有时尚家具及中式风格灯饰，各类用品一应俱全；卫生间除标准配套设施外，还特设有独立淋浴间，所有套房均提供电脑设备。</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<!--start main -->
+<div class="footer_bg">
+	<div class="wrap">
+		<div class="footer">
+			<div class="copy">
+				<p class="link"><span></span></p>
+			</div>
+			<div class="f_nav">
+				<ul>
+					<li><a th:href="@{'/trans/toIndex?userId='+${userId}}">hotel</a></li>
+					<li><a th:href="@{'/trans/toRoom?userId='+${userId}}">rooms & suits</a></li>
+					<li><a th:href="@{'/trans/toContact?userId='+${userId}}">contact</a></li>
+				</ul>
+			</div>
+			<div class="soc_icons">
+				<ul>
+					<li><a class="icon1" href="#"></a></li>
+					<li><a class="icon2" href="#"></a></li>
+					<li><a class="icon3" href="#"></a></li>
+					<li><a class="icon4" href="#"></a></li>
+					<li><a class="icon5" href="#"></a></li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

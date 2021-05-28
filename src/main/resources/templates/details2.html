@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/JFGrid.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/css/JFFormStyle-1.css}" />
+    <script type="text/javascript" th:src="@{/js/JFCore.js}"></script>
+    <script type="text/javascript" th:src="@{/js/JFForms.js}"></script>
+    <!-- Set here the key for your domain in order to hide the watermark on the web server -->
+    <script type="text/javascript">
+        (function() {
+            JC.init({
+                domainKey: ''
+            });
+        })();
+    </script>
+    <!--nav-->
+    <script>
+        $(function() {
+            var pull 		= $('#pull');
+            menu 		= $('nav ul');
+            menuHeight	= menu.height();
+
+            $(pull).on('click', function(e) {
+                e.preventDefault();
+                menu.slideToggle();
+            });
+
+            $(window).resize(function(){
+                var w = $(window).width();
+                if(w > 320 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <a th:href="@{'/trans/toIndex?userId='+${userId}}"><img th:src="@{/img/logo.png}" alt=""></a>
+            </div>
+            <div class="h_right">
+                <!--start menu -->
+                <ul class="menu">
+                    <li class="active"><a th:href="@{/jump/index}"></a></li>
+                    <li><a th:href="@{/jump/rooms}"></a></li>
+                    <li><a th:href="@{/jump/contact}"></a></li>
+                    <div class="clear"></div>
+                </ul>
+                <!-- start profile_details -->
+
+            </div>
+            <div class="clear"></div>
+            <div class="top-nav">
+                <nav class="clearfix">
+                    <ul>
+                        <li class="active"><a href="index.html">hotel</a></li>
+                        <li><a href="rooms.html">rooms & suits</a></li>
+                        <li><a href="reservation.html">reservation</a></li>
+                        <li><a href="activities.html">activities</a></li>
+                        <li><a href="contact.html">contact</a></li>
+                    </ul>
+                    <a href="#" id="pull">Menu</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!--start main -->
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="details">
+                <h2>双人房简介</h2>
+                <div class="det_pic">
+                    <img th:src="@{/img/double.jpg}" alt="" />
+                </div>
+                <div class="det_text">
+                    <p class="para">本房间是本酒店顾客选择率最多的房间类型,双人房间可容许双人同时入住,配有两张大床,与多套单人使用的清洁用具,光照充足,打开窗户,放眼望去就是本市区最繁盛的街道,车水马龙.窗户采用三层隔音设置,隔音效果优良,根本不用担心街道的汽车吵到您的休息,是您带有伴侣及小孩的最佳选择房间,大床空间足够,虽然是双人房间,但是可随便容纳四人,且不觉得拥挤,价格合理,是您的不二选择,配有各种电器,空调,WiFi,淋浴间一应俱全,每天会派人打扫房间,不用担心卫生问题 </p>
+                    <p class="para">本房间采光效果非常好，可享非常温暖的阳光，并且可将窗外园区风光一览无余，尽情享受美丽的生活。房间内可提供的服务:迷你吧、客衣洗涤熨烫、客衣破损织补、擦鞋、冰块、雨伞、免费宽带、数字电视、加床（婴儿床）、多用插头和转换器、客房送餐、保险箱、保健枕，所有行政房和套房内配备了电脑一体机，套房内还配备了传真机。 </p>
+                    <div class="read_more">
+                        <a th:href="@{'/trans/toIndex?userId='+${userId}}">立即去预定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--start footer -->
+<div class="footer_bg">
+    <div class="wrap">
+        <div class="footer">
+            <div class="copy">
+                <p class="link"><span>Copyright &copy; 2020.Company name All rights reserved.</span></p>
+            </div>
+            <div class="f_nav">
+                <ul>
+                    <li><a th:href="@{'/trans/toIndex?userId='+${userId}}">hotel</a></li>
+                    <li><a th:href="@{'/trans/toRoom?userId='+${userId}}">rooms & suits</a></li>
+                    <li><a th:href="@{'/trans/toContact?userId='+${userId}}">contact</a></li>
+                </ul>
+            </div>
+            <div class="soc_icons">
+                <ul>
+                    <li><a class="icon1" href="#"></a></li>
+                    <li><a class="icon2" href="#"></a></li>
+                    <li><a class="icon3" href="#"></a></li>
+                    <li><a class="icon4" href="#"></a></li>
+                    <li><a class="icon5" href="#"></a></li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

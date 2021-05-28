@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Rooms</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link th:href="@{http://fonts.useso.com/css?family=Open+Sans:400,300,700}" rel='stylesheet' type='text/css'>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all" />
+<script th:src="@{/js/jquery.min.js}"></script>
+<link type="text/css" rel="stylesheet" th:href="@{/css/JFGrid.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/JFFormStyle-1.css}" />
+		<script type="text/javascript" th:src="@{/js/JFCore.js}"></script>
+		<script type="text/javascript" th:src="@{/js/JFForms.js}"></script>
+		<!-- Set here the key for your domain in order to hide the watermark on the web server -->
+		<script type="text/javascript">
+			(function() {
+				JC.init({
+					domainKey: ''
+				});
+				})();
+		</script>
+<!--nav-->
+<script>
+		$(function() {
+			var pull 		= $('#pull');
+				menu 		= $('nav ul');
+				menuHeight	= menu.height();
+
+			$(pull).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+
+			$(window).resize(function(){
+        		var w = $(window).width();
+        		if(w > 320 && menu.is(':hidden')) {
+        			menu.removeAttr('style');
+        		}
+    		});
+		});
+</script>
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+<div class="wrap">
+	<div class="header">
+		<div class="logo">
+			<a th:href="@{'/trans/toIndex?userId='+${userId}}"><img th:src="@{/img/logo.png}" alt=""></a>
+		</div>
+		<div class="h_right">
+			<!--start menu -->
+			<ul class="menu">
+				<li><a th:href="@{'/trans/toIndex?userId='+${userId}}">hotel</a></li> |
+				<li class="active"><a th:href="@{'/trans/toRoom?userId='+${userId}}">rooms & suits</a></li> |
+				<li><a th:href="@{'/trans/toContact?userId='+${userId}}">contact</a></li>
+				<div class="clear"></div>
+			</ul>
+
+		</div>
+		<div class="clear"></div>
+
+	</div>
+</div>
+</div>
+<!--start main -->
+<div class="main_bg">
+<div class="wrap">
+	<div class="main">
+		<div class="main">
+			<div class="content">
+				<div class="room">
+					<h4>酒店介绍</h4>
+					<p class="para">
+						是由中国光大集团投资21.4亿人民币开发集展览、会议、酒店、公寓楼、办公楼等各种设施一体的综合性建筑，光大会展中心国际大酒店为会展中心重要组成部分，位于城市副中心徐家汇和漕河泾高新技术开发区的黄金节点位置，毗邻火车南站、距地铁漕宝路站和高架道路出口仅300米，前往虹桥机场约20分钟车程。
+						优越的地理位置加上便捷的交通和现代化的服务设施，使其成为上海这座国际经济、金融和贸易中心的一道亮丽风景线。</p>
+				</div>
+				<div class="grids_of_2">
+					<div class="grids_of_img">
+						<img th:src="@{/img/pic4.jpg}" alt=""/>
+					</div>
+					<div class="grids_of_para">
+						<p class="para">从商务双人房到总统套房在内的370间不同风格的客房可满足您的商务、旅游、会务需要。
+							标准间温馨简约，舒适明净，以独到的眼光将酒店的每一个空间都合理运用并创造出现代与中西完美融合的设计风格，并配有无线wifi，宽带上网接口、卫星电视、国内外直拨电话、保险柜等各项便利设施。</p>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="grids_of_2">
+					<div class="grids_of_img">
+						<img th:src="@{/img/pic5.jpg}" alt=""/>
+					</div>
+					<div class="grids_of_para">
+						<p class="para">有专门会客厅，主客卫生间独立分开。布局新颖、格调高雅、现代化的设备设施、温馨的服务。
+							豪华房装饰设计独具现代时尚风格，卫生间均设有独立淋浴间和浴缸。楼层整体视野开阔，功能完善，处处体现豪华气质与典雅格调的完美统一。
+							四间套房拥有欧式，中式，日式，西班牙式，现代等不同风格。套房位于酒店顶层，卧室，起居室，书房，餐厅，复式设计，南观中心花园，北望城市夜景，凝造出一幅宁静，典雅，舒适的环境。</p>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+			</div>
+
+			<div class="sidebar">
+				<div class="date_btn">
+					<form th:action="@{/trans/toIndex}">
+						<input type="hidden" name="userId" th:value="${userId}" th:if="${not #strings.isEmpty(userId)}">
+						<input type="submit" value="立即预定" style="width: 82px;">
+					</form>
+				</div>
+
+			</div>
+
+
+			<div class="content">
+				<div class="room">
+					<h4>地理位置</h4>
+					<p class="para">距离浦东国际机场50公里，距虹桥交通枢纽15公里</p>
+					<p class="para">距上海火车站12公里，上海火车南站3公里</p>
+					<p class="para">距地铁12号线漕宝路站，8号出口0.3公里</p>
+					<p class="para">距地铁1号线漕宝路站，1号出口0.5公里</p>
+					<p class="para">距地铁3号线，地铁7号线1.5公里</p>
+					<p>距徐家汇商业圈3公里。</p>
+				</div>
+				<div class="grids_of_2">
+
+					<img th:src="@{/img/single.jpg}" alt=""/>
+
+					<div class="grids_of_para">
+						<p class="para"></p>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+
+			</div>
+
+
+			<div class="content">
+				<div class="room">
+					<h4>客房设施</h4>
+					<p class="para">简约的设计，融入了我们东方民族的稳重大方明;融入了西方民族的尊贵华丽;其中西结合，尽展完美之风。非常适合单人享受生活的乐趣与休息。</p>
+					<p class="para">从商务双人房到总统套房在内的370间不同风格的客房可满足您的商务、旅游、会务需要。</p>
+					<p class="para">
+						标准间温馨简约，舒适明净，以独到的眼光将酒店的每一个空间都合理运用并创造出现代与中西完美融合的设计风格，并配有无线wifi，宽带上网接口、卫星电视、国内外直拨电话、保险柜等各项便利设施。</p>
+					<p class="para">优商务套房空间宽敞，有专门会客厅，主客卫生间独立分开。布局新颖、格调高雅、现代化的设备设施、温馨的服务。
+						豪华房装饰设计独具现代时尚风格，卫生间均设有独立淋浴间和浴缸。楼层整体视野开阔，功能完善，处处体现豪华气质与典雅格调的完美统一。</p>
+					<p class="para">四间套房拥有欧式，中式，日式，西班牙式，现代等不同风格。
+						总统套房位于酒店顶层，卧室，起居室，书房，餐厅，复式设计，南观中心花园，北望城市夜景，凝造出一幅宁静，典雅，舒适的环境。</p>
+				</div>
+
+				<div class="grids_of_2">
+
+					<img th:src="@{/img/double.jpg}" alt=""/>
+
+					<div class="grids_of_para">
+						<p class="para"></p>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="clear"></div>
+
+
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+</div>
+</div>		
+<!--start main -->
+<div class="footer_bg">
+<div class="wrap">
+<div class="footer">
+			<div class="copy">
+				<p class="link"><span></span></p>
+			</div>
+			<div class="f_nav">
+				<ul>
+					<li><a th:href="@{'/trans/toIndex?userId='+${userId}}">hotel</a></li>
+					<li><a th:href="@{'/trans/toRoom?userId='+${userId}}">rooms & suits</a></li>
+					<li><a th:href="@{'/trans/toContact?userId='+${userId}}">contact</a></li>
+				</ul>
+			</div>
+			<div class="soc_icons">
+				<ul>
+					<li><a class="icon1" href="#"></a></li>
+					<li><a class="icon2" href="#"></a></li>
+					<li><a class="icon3" href="#"></a></li>
+					<li><a class="icon4" href="#"></a></li>
+					<li><a class="icon5" href="#"></a></li>
+					<div class="clear"></div>
+				</ul>	
+			</div>
+			<div class="clear"></div>
+</div>
+</div>
+</div>		
+</body>
+</html>

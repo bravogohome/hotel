@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/table.css" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/highcharts.js}"></script>
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>房屋信息</h2>
+            <div style="max-width:1px;height:100px"></div>
+            <div id="containerxx" style="max-width:1500px;height:600px"></div>
+        </main>
+
+
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="/js/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="/js/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            },
+            legend: {
+                display: false,
+            }
+        }
+    });
+</script>
+
+<script th:inline="javascript" >
+    var noise1=parseFloat([[${noise1}]]);
+    var noise2=parseFloat([[${noise2}]]);
+    var noise3=parseFloat([[${noise3}]]);
+    var noise4=parseFloat([[${noise4}]]);
+    var noise5=parseFloat([[${noise5}]]);
+    var temperature1=parseFloat([[${temperature1}]]);
+    var temperature2=parseFloat([[${temperature2}]]);
+    var temperature3=parseFloat([[${temperature3}]]);
+    var temperature4=parseFloat([[${temperature4}]]);
+    var temperature5=parseFloat([[${temperature5}]]);
+    var wet1=parseFloat([[${wet1}]]);
+    var wet2=parseFloat([[${wet2}]]);
+    var wet3=parseFloat([[${wet3}]]);
+    var wet4=parseFloat([[${wet4}]]);
+    var wet5=parseFloat([[${wet5}]]);
+    var PM1=parseFloat([[${PM1}]]);
+    var PM2=parseFloat([[${PM2}]]);
+    var PM3=parseFloat([[${PM3}]]);
+    var PM4=parseFloat([[${PM4}]]);
+    var PM5=parseFloat([[${PM5}]]);
+
+
+    var chart = Highcharts.chart('containerxx', {
+        title: {
+            text: [[${roomMessage}]]
+        },
+        subtitle: {
+            text: ''
+        },
+        XAxis: {
+            title: {
+                text: '最近5次更新数据'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: 1
+            }
+        },
+        series: [
+            {
+                name: '温度 单位:℃',
+                data: [temperature1, temperature2, temperature3, temperature4,temperature5],
+                color:"#ff0000"
+            },
+            {
+                name: '噪音 单位:db',
+                data: [noise1,noise2, noise3, noise4,noise5]
+            },
+            {
+                name: 'PM2.5 单位:ug/m3',
+                data: [PM1,PM2,PM3,PM4,PM5]
+            },
+            {
+                name: '湿度 0-1',
+                data: [wet1,wet2, wet3, wet4,wet5]
+            },
+
+        ],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    });
+</script>
+</body>
+
+</html>
